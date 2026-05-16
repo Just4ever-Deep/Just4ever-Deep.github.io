@@ -1,0 +1,28 @@
+series:
+  - name: Distributed Systems Notes
+    slug: distributed-systems-notes
+    status: active
+    summary: Notes on RPC, consensus, replication, consistency and fault tolerance.
+    category: Systems
+    tags:
+      - distributed-system
+      - raft
+      - consistency
+
+  - name: Operating Systems Notes
+    slug: operating-systems-notes
+    status: active
+    summary: Notes on processes, memory, file systems, concurrency and virtualization.
+    category: Systems
+    tags:
+      - operating-system
+      - linux
+
+  - name: Algorithm Practice Journal
+    slug: algorithm-practice-journal
+    status: research
+    summary: Structured records for algorithm problem solving and complexity comparisons.
+    category: Algorithms
+    tags:
+      - algorithms
+      - leetcode

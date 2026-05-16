@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<%
+  const activeLang = page.lang || (typeof config.language === 'string' ? config.language : (Array.isArray(config.language) && config.language.length ? config.language[0] : 'zh-CN'));
+%>
+<html lang="<%= activeLang %>">
+<%- partial('partial/head') %>
+<body class="tml-body">
+  <%- partial('partial/machine-intro') %>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-scanline" aria-hidden="true"></div>
+  <%- partial('partial/header') %>
+  <div class="tml-shell">
+    <aside class="tml-sidebar">
+      <%- partial('partial/sidebar') %>
+    </aside>
+    <main class="tml-main" id="main-content">
+      <%- body %>
+    </main>
+  </div>
+  <%- partial('partial/footer') %>
+  <%- partial('partial/scripts') %>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<%
+  const booksData = ((site.data || {}).books || {}).books || [];
+  const books = Array.isArray(booksData) ? booksData : [];
+  const groups = ['reading', 'finished', 'planned', 'reference', 'paused'];
+%>
+<section class="list-page hud-box module-page books-page">
+  <h1><%= page.title %></h1>
+  <p class="module-subtitle"><%= __('books.subtitle') %></p>
+
+  <% groups.forEach(function(group){ %>
+    <% const items = books.filter(function(book){ return String(book.status || '').toLowerCase() === group; }); %>
+    <% if (items.length) { %>
+      <section class="books-group">
+        <h2 class="section-title"><%= __('books.status_' + group) %></h2>
+        <div class="module-grid">
+          <% items.forEach(function(book){ %>
+            <article class="module-card hud-box">
+              <header class="module-card-head">
+                <h3><%= book.title || __('books.untitled') %></h3>
+                <span class="status-badge status-<%= String(book.status || 'reading').toLowerCase() %>"><%= String(book.status || 'reading').toUpperCase() %></span>
+              </header>
+
+              <div class="module-meta">
+                <% if (book.author) { %><span><%= __('books.author') %>: <%= book.author %></span><% } %>
+                <% if (book.category) { %><span><%= __('books.category') %>: <%= book.category %></span><% } %>
+              </div>
+
+              <% if (book.summary) { %><p class="module-summary"><%= book.summary %></p><% } %>
+
+              <div class="book-progress-wrap">
+                <div class="book-progress-label"><%= __('books.progress') %>: <%= Number(book.progress || 0) %>%</div>
+                <div class="book-progress"><span style="width:<%= Math.max(0, Math.min(100, Number(book.progress || 0))) %>%"></span></div>
+              </div>
+
+              <div class="module-meta">
+                <% if (book.started) { %><span><%= __('books.started') %>: <%= book.started %></span><% } %>
+                <% if (book.finished) { %><span><%= __('books.finished') %>: <%= book.finished %></span><% } %>
+                <% if (book.rating) { %><span><%= __('books.rating') %>: <%= book.rating %>/5</span><% } %>
+              </div>
+
+              <% if (book.notes) { %>
+                <div class="module-links"><a href="<%- url_for(book.notes) %>"><%= __('books.notes') %></a></div>
+              <% } %>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    <% } %>
+  <% }) %>
+</section>

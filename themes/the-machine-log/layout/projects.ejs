@@ -1,0 +1,46 @@
+<%
+  const projectsData = ((site.data || {}).projects || {}).projects || [];
+  const projects = Array.isArray(projectsData) ? projectsData : [];
+%>
+<section class="list-page hud-box module-page projects-page">
+  <h1><%= page.title %></h1>
+  <p class="module-subtitle"><%= __('projects.subtitle') %></p>
+
+  <div class="module-grid">
+    <% projects.forEach(function(project){ %>
+      <article class="module-card hud-box">
+        <header class="module-card-head">
+          <h2><%= project.title || __('projects.untitled') %></h2>
+          <span class="status-badge status-<%= String(project.status || 'active').toLowerCase() %>"><%= String(project.status || 'active').toUpperCase() %></span>
+        </header>
+
+        <div class="module-meta">
+          <% if (project.type) { %><span><%= __('projects.type') %>: <%= project.type %></span><% } %>
+          <% if (project.started) { %><span><%= __('projects.started') %>: <%= project.started %></span><% } %>
+        </div>
+
+        <% if (project.summary) { %><p class="module-summary"><%= project.summary %></p><% } %>
+
+        <% if (project.stack && project.stack.length) { %>
+          <div class="tag-cloud">
+            <% project.stack.forEach(function(item){ %>
+              <span class="tag-item"><%= item %></span>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <% if (project.tags && project.tags.length) { %>
+          <div class="module-meta module-tags">
+            <span><%= __('projects.tags') %>: <%= project.tags.join(', ') %></span>
+          </div>
+        <% } %>
+
+        <div class="module-links">
+          <% if (project.links && project.links.github) { %><a href="<%= project.links.github %>" target="_blank" rel="noopener noreferrer">GitHub</a><% } %>
+          <% if (project.links && project.links.demo) { %><a href="<%- url_for(project.links.demo) %>"><%= __('projects.demo') %></a><% } %>
+          <% if (project.links && project.links.writeup) { %><a href="<%- url_for(project.links.writeup) %>"><%= __('projects.writeup') %></a><% } %>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>

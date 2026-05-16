@@ -1,0 +1,195 @@
+nav:
+  home: Home
+  projects: Projects
+  books: Books
+  experiments: Experiments
+  series: Series
+  archives: Archives
+  categories: Categories
+  tags: Tags
+  calendar: Calendar
+  search: Search
+  about: About
+
+lang:
+  switch_to_en: EN
+  switch_to_zh: 中文
+
+header:
+  system_online: SYSTEM ONLINE
+  path: PATH
+  time: TIME
+  posts: POSTS
+  categories: CATEGORIES
+  tags: TAGS
+  menu: MENU
+  main_navigation: Main navigation
+
+home:
+  hero_title: THE MACHINE LOG
+  hero_subtitle: A research log for systems, algorithms, AI and engineering practice.
+  terminal_line_1: "> boot sequence initialized"
+  terminal_line_2: "> identity: computer science graduate student"
+  terminal_line_3: "> status: learning / researching / building"
+  terminal_line_4: "> archive access granted"
+  recent_records: RECENT RECORDS
+  categories_quick_access: CATEGORIES QUICK ACCESS
+
+search:
+  archive_title: SEARCH ARCHIVE
+  placeholder: Search title / content / tags / categories...
+  no_match: No matching records.
+  index_missing: Search index not found. Run <code>hexo generate</code> first.
+  untitled: Untitled
+
+copy:
+  copy: COPY
+  copied: COPIED
+  failed: FAILED
+
+common:
+  minutes_short: MIN
+  top: TOP
+
+post:
+  case_file: CASE FILE
+  created: CREATED
+  updated: UPDATED
+  status: STATUS
+  classification: CLASSIFICATION
+  learning_record: LEARNING RECORD
+  categories: CATEGORIES
+  tags: TAGS
+  read_time: READ TIME
+  previous: PREVIOUS
+  next: NEXT
+  series_navigation: Series navigation
+  series_current: Current
+  series_previous: Previous in series
+  series_next: Next in series
+
+archive:
+  timeline: ARCHIVE TIMELINE
+
+category:
+  single: CATEGORY
+  all: CATEGORY TAGS
+
+tag:
+  single: TAG
+  all: TAG TAGS
+
+taxonomy:
+  category_hint: Select a category tag to view posts in that category.
+  tag_hint: Select a tag label to view posts with that tag.
+  clear_filter: Clear filter
+  no_posts_for_category: No posts found for this category.
+  no_posts_for_tag: No posts found for this tag.
+
+calendar:
+  title: Calendar Heatmap
+  subtitle: Posting activity across the past 365 days
+  aria: Posting activity calendar heatmap
+  posts_unit: posts
+  range: Range
+  less: Less
+  more: More
+
+error:
+  signal_lost: SIGNAL LOST
+  archive_missing: The requested archive does not exist.
+  return_to_index: Return to index.
+
+sidebar:
+  identity: IDENTITY
+  researcher: Researcher
+  status: STATUS
+  active: ACTIVE
+  location: LOCATION
+  unknown: UNKNOWN
+  social: SOCIAL
+  email: Email
+  rss_feed: RSS Feed
+  research_directions: RESEARCH DIRECTIONS
+  direction_algorithms: Algorithms
+  direction_distributed_systems: Distributed Systems
+  direction_ai: Artificial Intelligence
+  direction_security: Security
+  direction_programming_languages: Programming Languages
+  direction_engineering_notes: Engineering Notes
+
+footer:
+  built_with_hexo: Built with Hexo
+  theme: Theme
+
+pagination:
+  prev: PREV
+  next: NEXT
+
+toc:
+  title: TABLE OF CONTENTS
+
+dashboard:
+  system_status: SYSTEM STATUS
+  stats_papers_read: PAPERS READ
+  stats_research_logs: RESEARCH LOGS
+  stats_active_projects: ACTIVE PROJECTS
+  stats_experiments: EXPERIMENTS
+  stats_books: BOOKS
+  stats_series: SERIES
+  learning_heatmap: LEARNING HEATMAP
+  open_full_heatmap: Open full heatmap
+  current_focus: CURRENT FOCUS
+  active_case_files: ACTIVE CASE FILES
+  research_domains: RESEARCH DOMAINS
+
+projects:
+  subtitle: Ongoing project dossiers for research and engineering tracks.
+  untitled: Untitled project
+  type: Type
+  started: Started
+  tags: Tags
+  demo: Demo
+  writeup: Writeup
+
+books:
+  subtitle: Reading list organized by status with quick notes access.
+  untitled: Untitled book
+  author: Author
+  category: Category
+  progress: Progress
+  started: Started
+  finished: Finished
+  rating: Rating
+  notes: Notes
+  status_reading: Reading
+  status_finished: Finished
+  status_planned: Planned
+  status_reference: Reference
+  status_paused: Paused
+
+experiments:
+  subtitle: Experiment logs grouped for fast review.
+  result: Result
+  reproducible: Reproducible
+  yes: Yes
+  no: No
+  empty: No experiment logs yet.
+
+series:
+  subtitle: Thematic article series with ongoing updates.
+  untitled: Untitled series
+  category: Category
+  post_count: Post count
+
+intro:
+  aria_label: System boot intro
+  system_online: SYSTEM ONLINE
+  access_archive: "ACCESS: RESEARCH ARCHIVE"
+  boot_sequence: BOOT SEQUENCE
+  line_1: "> initializing observation grid"
+  line_2: "> loading research index"
+  line_3: "> calibrating signal filters"
+  line_4: "> identity: computer science graduate student"
+  line_5: "> archive access granted"
+  skip: SKIP

@@ -1,0 +1,73 @@
+<section class="post-shell">
+  <article class="post-detail hud-box">
+    <header class="post-header">
+      <p class="post-case"><%= __('post.case_file') %>: <%= page.title %></p>
+      <h1><%= page.title %></h1>
+      <div class="post-meta">
+        <span><%= __('post.created') %>: <%= date(page.date, 'YYYY-MM-DD HH:mm') %></span>
+        <span><%= __('post.updated') %>: <%= date(page.updated || page.date, 'YYYY-MM-DD HH:mm') %></span>
+        <span><%= __('post.status') %>: <span class="status-badge status-<%= (page.status || 'active').toLowerCase() %>"><%= (page.status || 'active').toUpperCase() %></span></span>
+        <span><%= __('post.classification') %>: <%= __('post.learning_record') %></span>
+      </div>
+      <div class="post-meta">
+        <% if (page.categories && page.categories.length) { %>
+          <span><%= __('post.categories') %>: <%= page.categories.map(c => c.name).join(', ') %></span>
+        <% } %>
+        <% if (page.tags && page.tags.length) { %>
+          <span><%= __('post.tags') %>: <%= page.tags.map(t => t.name).join(', ') %></span>
+        <% } %>
+        <span><%= __('post.read_time') %>: <%= Math.max(1, Math.round((strip_html(page.content || '').length / 500) || 1)) %> <%= __('common.minutes_short') %></span>
+      </div>
+    </header>
+
+    <div class="post-content"><%- page.content %></div>
+
+    <% if (page.series) { %>
+      <%
+        const allPosts = site.posts && typeof site.posts.toArray === 'function' ? site.posts.toArray() : (Array.isArray(site.posts) ? site.posts : []);
+        const seriesPosts = allPosts
+          .filter(function(post){ return String(post.series || '') === String(page.series || ''); })
+          .sort(function(a, b){
+            const aOrder = Number(a.series_order || 0);
+            const bOrder = Number(b.series_order || 0);
+            if (aOrder && bOrder && aOrder !== bOrder) return aOrder - bOrder;
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+          });
+        const currentIndex = seriesPosts.findIndex(function(post){ return post.path === page.path; });
+        const seriesPrev = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
+        const seriesNext = currentIndex > -1 && currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
+      %>
+      <section class="series-nav hud-box">
+        <h2><%= __('post.series_navigation') %></h2>
+        <p class="series-current"><%= __('post.series_current') %>: <%= page.series %> · <%= currentIndex + 1 %>/<%= seriesPosts.length %></p>
+        <div class="series-nav-links">
+          <% if (seriesPrev) { %>
+            <a href="<%- url_for(seriesPrev.path) %>">← <%= __('post.series_previous') %>: <%= seriesPrev.title %></a>
+          <% } else { %>
+            <span><%= __('post.series_previous') %>: -</span>
+          <% } %>
+          <% if (seriesNext) { %>
+            <a href="<%- url_for(seriesNext.path) %>"><%= __('post.series_next') %>: <%= seriesNext.title %> →</a>
+          <% } else { %>
+            <span><%= __('post.series_next') %>: -</span>
+          <% } %>
+        </div>
+      </section>
+    <% } %>
+
+    <nav class="post-nav">
+      <% if (page.prev) { %>
+        <a href="<%- url_for(page.prev.path) %>">← <%= __('post.previous') %>: <%= page.prev.title %></a>
+      <% } %>
+      <% if (page.next) { %>
+        <a href="<%- url_for(page.next.path) %>"><%= __('post.next') %>: <%= page.next.title %> →</a>
+      <% } %>
+    </nav>
+  </article>
+
+  <% if (theme.features && theme.features.toc) { %>
+    <%- partial('partial/toc') %>
+  <% } %>
+</section>
+
+<button id="back-to-top" class="back-to-top"><%= __('common.top') %></button>

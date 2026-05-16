@@ -1,0 +1,118 @@
+<%
+  const listingPosts = (page.posts && typeof page.posts.each === 'function') ? page.posts : site.posts.sort('date', -1).limit(config.per_page || 10);
+  const allPosts = site.posts && typeof site.posts.toArray === 'function' ? site.posts.toArray() : (Array.isArray(site.posts) ? site.posts : []);
+  const dashboardData = (site.data || {}).dashboard || {};
+  const projectsData = ((site.data || {}).projects || {}).projects || [];
+  const activeProjects = projectsData.filter(function(project){ return String(project.status || '').toLowerCase() === 'active'; });
+  const isEn = page.lang === 'en';
+
+  const stats = dashboardData.stats || {};
+  const statCards = [
+    { key: 'papers_read', value: stats.papers_read || 0 },
+    { key: 'research_logs', value: stats.research_logs || allPosts.length },
+    { key: 'active_projects', value: stats.active_projects || activeProjects.length },
+    { key: 'experiments', value: stats.experiments || allPosts.filter(function(post){
+      const categories = (post.categories || []).map(c => String(c.name || '').toLowerCase());
+      return categories.includes('experiments') || categories.includes('实验日志');
+    }).length },
+    { key: 'books', value: stats.books || ((((site.data || {}).books || {}).books || []).length) },
+    { key: 'series', value: stats.series || ((((site.data || {}).series || {}).series || []).length) }
+  ];
+
+  const focusItems = dashboardData.current_focus || [];
+
+  const oneDay = 24 * 60 * 60 * 1000;
+  const now = new Date();
+  const end = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(end.getTime() - 364 * oneDay);
+  const dayMap = {};
+  allPosts.forEach(function(post) {
+    const d = new Date(post.date);
+    const key = date(d, 'YYYY-MM-DD');
+    dayMap[key] = (dayMap[key] || 0) + 1;
+  });
+  const cells = [];
+  for (let i = 0; i < 365; i += 1) {
+    const d = new Date(start.getTime() + i * oneDay);
+    const key = date(d, 'YYYY-MM-DD');
+    const count = dayMap[key] || 0;
+    const level = count === 0 ? 0 : count < 2 ? 1 : count < 4 ? 2 : count < 6 ? 3 : 4;
+    cells.push({ key, count, level });
+  }
+%>
+
+<section class="hero hud-box">
+  <h1><%= __('home.hero_title') %></h1>
+  <p class="hero-subtitle"><%= __('home.hero_subtitle') %></p>
+  <pre class="hero-terminal" id="hero-terminal"><%= __('home.terminal_line_1') %>
+<%= __('home.terminal_line_2') %>
+<%= __('home.terminal_line_3') %>
+<%= __('home.terminal_line_4') %></pre>
+</section>
+
+<section class="section-block hud-box dashboard-panel">
+  <h2 class="section-title"><%= __('dashboard.system_status') %></h2>
+  <div class="dashboard-stats-grid">
+    <% statCards.forEach(function(item){ %>
+      <article class="dashboard-stat-card">
+        <p class="dashboard-stat-label"><%= __('dashboard.stats_' + item.key) %></p>
+        <p class="dashboard-stat-value"><%= item.value %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section-block hud-box dashboard-panel">
+  <h2 class="section-title"><%= __('dashboard.learning_heatmap') %></h2>
+  <div class="dashboard-heatmap-wrap">
+    <div class="dashboard-heatmap-grid" aria-label="<%= __('calendar.aria') %>">
+      <% cells.forEach(function(cell){ %>
+        <div class="calendar-cell calendar-level-<%= cell.level %>" title="<%= cell.key %> · <%= cell.count %> <%= __('calendar.posts_unit') %>"></div>
+      <% }) %>
+    </div>
+  </div>
+  <div class="dashboard-panel-link"><a href="<%- url_for(isEn ? '/en/calendar/' : '/calendar/') %>"><%= __('dashboard.open_full_heatmap') %></a></div>
+</section>
+
+<section class="section-block hud-box dashboard-panel">
+  <h2 class="section-title"><%= __('dashboard.current_focus') %></h2>
+  <div class="tag-cloud">
+    <% focusItems.forEach(function(item){ %>
+      <span class="tag-item"><%= item %></span>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section-block">
+  <h2 class="section-title"><%= __('home.recent_records') %></h2>
+  <% listingPosts.each(function(post){ %>
+    <%- partial('partial/post-card', { post: post }) %>
+  <% }) %>
+  <%- partial('partial/pagination') %>
+</section>
+
+<section class="section-block hud-box dashboard-panel">
+  <h2 class="section-title"><%= __('dashboard.active_case_files') %></h2>
+  <div class="module-grid compact-grid">
+    <% activeProjects.forEach(function(project){ %>
+      <article class="module-card hud-box">
+        <header class="module-card-head">
+          <h3><%= project.title %></h3>
+          <span class="status-badge status-<%= String(project.status || 'active').toLowerCase() %>"><%= String(project.status || 'active').toUpperCase() %></span>
+        </header>
+        <% if (project.summary) { %><p class="module-summary"><%= project.summary %></p><% } %>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section-block hud-box">
+  <h2 class="section-title"><%= __('dashboard.research_domains') %></h2>
+  <div class="tag-cloud">
+    <% site.categories.each(function(category){ %>
+      <% const base = isEn ? '/en/categories/' : '/categories/'; %>
+      <a href="<%- url_for(base + '?c=' + encodeURIComponent(category.name)) %>" class="tag-item"><%= category.name %> · <%= category.length %></a>
+    <% }) %>
+  </div>
+</section>
+

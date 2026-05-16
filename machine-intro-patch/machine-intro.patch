@@ -1,0 +1,56 @@
+diff --git a/themes/the-machine-log/layout/layout.ejs b/themes/the-machine-log/layout/layout.ejs
+index 0000000..0000001 100644
+--- a/themes/the-machine-log/layout/layout.ejs
++++ b/themes/the-machine-log/layout/layout.ejs
+@@
+-<body>
++<body>
++  <%- partial('partial/machine-intro') %>
+diff --git a/themes/the-machine-log/source/css/main.styl b/themes/the-machine-log/source/css/main.styl
+index 0000000..0000001 100644
+--- a/themes/the-machine-log/source/css/main.styl
++++ b/themes/the-machine-log/source/css/main.styl
+@@
++@import "machine-intro"
+diff --git a/themes/the-machine-log/layout/partial/scripts.ejs b/themes/the-machine-log/layout/partial/scripts.ejs
+index 0000000..0000001 100644
+--- a/themes/the-machine-log/layout/partial/scripts.ejs
++++ b/themes/the-machine-log/layout/partial/scripts.ejs
+@@
++<%- js('/js/machine-intro.js') %>
+diff --git a/themes/the-machine-log/layout/partial/machine-intro.ejs b/themes/the-machine-log/layout/partial/machine-intro.ejs
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/layout/partial/machine-intro.ejs
+@@
++See files/themes/the-machine-log/layout/partial/machine-intro.ejs in this patch package.
+diff --git a/themes/the-machine-log/source/css/machine-intro.styl b/themes/the-machine-log/source/css/machine-intro.styl
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/source/css/machine-intro.styl
+@@
++See files/themes/the-machine-log/source/css/machine-intro.styl in this patch package.
+diff --git a/themes/the-machine-log/source/js/machine-intro.js b/themes/the-machine-log/source/js/machine-intro.js
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/source/js/machine-intro.js
+@@
++See files/themes/the-machine-log/source/js/machine-intro.js in this patch package.
+diff --git a/themes/the-machine-log/source/images/machine-bg-grid.svg b/themes/the-machine-log/source/images/machine-bg-grid.svg
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/source/images/machine-bg-grid.svg
+@@
++Generated original SVG background: observation grid.
+diff --git a/themes/the-machine-log/source/images/machine-bg-noise.svg b/themes/the-machine-log/source/images/machine-bg-noise.svg
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/source/images/machine-bg-noise.svg
+@@
++Generated original SVG background: signal noise.
+diff --git a/themes/the-machine-log/source/images/machine-bg-nodes.svg b/themes/the-machine-log/source/images/machine-bg-nodes.svg
+new file mode 100644
+--- /dev/null
++++ b/themes/the-machine-log/source/images/machine-bg-nodes.svg
+@@
++Generated original SVG background: abstract node field.

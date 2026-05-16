@@ -1,0 +1,56 @@
+<%
+  const menu = theme.menu || {};
+  const rawPath = '/' + (page.path || '');
+  const stripIndex = (p) => String(p || '').replace(/index\.html?$/i, '');
+  const ensureTrailingSlash = (p) => {
+    if (!p) return '/';
+    return p.endsWith('/') ? p : `${p}/`;
+  };
+  const normalizePath = (p) => ensureTrailingSlash(stripIndex(p || '/'));
+  const stripLangPrefix = (p) => p.replace(/^\/en(\/|$)/, '/');
+  const currentLang = page.lang || (typeof config.language === 'string' ? config.language : (Array.isArray(config.language) && config.language.length ? config.language[0] : 'zh-CN'));
+  const isEn = currentLang === 'en';
+  const withLanguagePrefix = (p) => {
+    const normalized = p && p.startsWith('/') ? p : `/${p || ''}`;
+    if (!isEn) return normalized;
+    if (normalized === '/') return '/en/';
+    if (normalized.startsWith('/en/')) return normalized;
+    return `/en${normalized}`;
+  };
+  const menuKeyMap = {
+    Home: 'nav.home',
+    Projects: 'nav.projects',
+    Books: 'nav.books',
+    Experiments: 'nav.experiments',
+    Series: 'nav.series',
+    Archives: 'nav.archives',
+    Categories: 'nav.categories',
+    Tags: 'nav.tags',
+    Calendar: 'nav.calendar',
+    Search: 'nav.search',
+    About: 'nav.about'
+  };
+  const displayPath = stripLangPrefix(normalizePath(rawPath));
+%>
+<header class="tml-header hud-box">
+  <div class="system-bar">
+    <span class="system-pill"><%= __('header.system_online') %></span>
+    <span class="system-path"><%= __('header.path') %>: <%= displayPath %></span>
+    <span class="system-clock"><%= __('header.time') %>: <span id="system-clock">--:--:--</span></span>
+    <span class="system-stats"><%= __('header.posts') %> <%= site.posts.length %> · <%= __('header.categories') %> <%= site.categories.length %> · <%= __('header.tags') %> <%= site.tags.length %></span>
+  </div>
+  <div class="header-main">
+    <a href="<%- url_for(isEn ? '/en/' : '/') %>" class="site-title"><%= config.title %></a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false"><%= __('header.menu') %></button>
+    <nav class="tml-nav" id="main-nav" aria-label="<%= __('header.main_navigation') %>">
+      <% Object.keys(menu).forEach(function(label){ %>
+        <% const href = url_for(withLanguagePrefix(menu[label])); %>
+        <% const normalizedCurrent = normalizePath(rawPath); %>
+        <% const normalizedHref = normalizePath(href); %>
+        <% const active = normalizedHref === (isEn ? '/en/' : '/') ? normalizedCurrent === normalizedHref : normalizedCurrent.startsWith(normalizedHref); %>
+        <a class="nav-link <%= active ? 'is-active' : '' %>" data-nav-link href="<%- href %>"><%= __(menuKeyMap[label] || label) %></a>
+      <% }) %>
+      <a class="nav-link" href="<%- url_for(isEn ? '/' : '/en/') %>"><%= isEn ? __('lang.switch_to_zh') : __('lang.switch_to_en') %></a>
+    </nav>
+  </div>
+</header>

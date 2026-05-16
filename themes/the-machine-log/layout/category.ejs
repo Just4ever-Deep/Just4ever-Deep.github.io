@@ -1,0 +1,26 @@
+<section class="list-page hud-box taxonomy-page" data-taxonomy-page="category">
+  <h1><%= __('category.all') %></h1>
+  <div class="taxonomy-filter-header">
+    <p class="taxonomy-hint"><%= __('taxonomy.category_hint') %></p>
+    <a class="tag-item taxonomy-clear" data-taxonomy-clear href="<%- url_for(page.lang === 'en' ? '/en/categories/' : '/categories/') %>"><%= __('taxonomy.clear_filter') %></a>
+  </div>
+
+  <div class="tag-cloud taxonomy-cloud" data-taxonomy-cloud>
+    <% site.categories.each(function(category){ %>
+      <% const isActive = String(page.category || '') === String(category.name); %>
+      <% const href = `${url_for(page.lang === 'en' ? '/en/categories/' : '/categories/')}?c=${encodeURIComponent(category.name)}`; %>
+      <a class="tag-item taxonomy-chip <%= isActive ? 'is-active' : '' %>" data-taxonomy-chip data-category="<%- category.name %>" href="<%- href %>"><%= category.name %> (<%= category.length %>)</a>
+    <% }) %>
+  </div>
+
+  <div class="taxonomy-list" data-taxonomy-list>
+    <% site.posts.sort('date', -1).forEach(function(post){ %>
+      <% const categories = (post.categories || []).map(c => c.name); %>
+      <div class="taxonomy-item" data-taxonomy-item data-categories="<%- categories.join('|') %>">
+        <%- partial('partial/post-card', { post: post }) %>
+      </div>
+    <% }) %>
+  </div>
+
+  <p class="taxonomy-empty" data-taxonomy-empty hidden><%= __('taxonomy.no_posts_for_category') %></p>
+</section>

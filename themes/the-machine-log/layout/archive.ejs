@@ -1,0 +1,12 @@
+<section class="list-page hud-box">
+  <h1><%= __('archive.timeline') %></h1>
+  <div class="archive-timeline">
+    <% site.posts.sort('date', -1).forEach(function(post){ %>
+      <div class="timeline-item">
+        <span class="timeline-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+        <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+        <span class="timeline-status status-<%= (post.status || 'active').toLowerCase() %>"><%= (post.status || 'active').toUpperCase() %></span>
+      </div>
+    <% }) %>
+  </div>
+</section>

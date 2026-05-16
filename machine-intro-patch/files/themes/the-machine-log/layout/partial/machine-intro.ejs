@@ -1,0 +1,56 @@
+<%-
+/*
+  Machine Intro Overlay
+  Low-intrusion boot screen inspired by surveillance / research-log aesthetics.
+  Original implementation: no official show assets, logos, screenshots, dialogue, or audio.
+*/
+%>
+<div id="machine-intro"
+     class="machine-intro"
+     data-machine-intro
+     aria-label="System boot intro"
+     role="dialog"
+     aria-live="polite">
+  <div class="machine-intro__background" aria-hidden="true">
+    <div class="machine-intro__grid"></div>
+    <div class="machine-intro__noise"></div>
+    <div class="machine-intro__scan"></div>
+    <div class="machine-intro__locator machine-intro__locator--a"></div>
+    <div class="machine-intro__locator machine-intro__locator--b"></div>
+    <div class="machine-intro__locator machine-intro__locator--c"></div>
+  </div>
+
+  <div class="machine-intro__panel">
+    <div class="machine-intro__corner machine-intro__corner--tl"></div>
+    <div class="machine-intro__corner machine-intro__corner--tr"></div>
+    <div class="machine-intro__corner machine-intro__corner--bl"></div>
+    <div class="machine-intro__corner machine-intro__corner--br"></div>
+
+    <div class="machine-intro__meta">
+      <span>SYSTEM ONLINE</span>
+      <span>ACCESS: RESEARCH ARCHIVE</span>
+      <span class="machine-intro__clock" data-machine-intro-clock>--:--:--</span>
+    </div>
+
+    <div class="machine-intro__title">
+      <span class="machine-intro__eyebrow">BOOT SEQUENCE</span>
+      <strong>THE MACHINE LOG</strong>
+    </div>
+
+    <div class="machine-intro__terminal" aria-hidden="true">
+      <p data-intro-line>&gt; initializing observation grid</p>
+      <p data-intro-line>&gt; loading research index</p>
+      <p data-intro-line>&gt; calibrating signal filters</p>
+      <p data-intro-line>&gt; identity: computer science graduate student</p>
+      <p data-intro-line>&gt; archive access granted</p>
+    </div>
+
+    <div class="machine-intro__progress" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <button class="machine-intro__skip" type="button" data-machine-intro-skip>
+      SKIP
+    </button>
+  </div>
+</div>

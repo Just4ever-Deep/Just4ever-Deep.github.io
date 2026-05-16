@@ -1,0 +1,655 @@
+@import 'variables'
+@import 'machine-intro'
+
+html,
+body
+  margin 0
+  padding 0
+  background $bg-main
+  color $text-main
+  font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+  font-size 16px
+  line-height 1.7
+
+*
+  box-sizing border-box
+
+a
+  color $code-blue
+  text-decoration none
+
+a:hover
+  color $accent
+
+.nav-toggle
+  display none
+
+.tml-body
+  min-height 100vh
+  position relative
+
+.bg-grid
+  position fixed
+  inset 0
+  pointer-events none
+  background-image linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+  background-size 40px 40px
+  opacity .25
+  z-index -2
+
+.bg-scanline
+  position fixed
+  inset 0
+  pointer-events none
+  background linear-gradient(to bottom, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.03) 50%)
+  background-size 100% 4px
+  opacity .18
+  z-index -1
+
+.hud-box
+  position relative
+  border 1px solid $line
+  background linear-gradient(180deg, rgba(16,22,32,.96), rgba(13,17,23,.92))
+
+.hud-box::before,
+.hud-box::after
+  content ''
+  position absolute
+  width 12px
+  height 12px
+  border-color $border-green
+
+.hud-box::before
+  top -1px
+  left -1px
+  border-top 2px solid
+  border-left 2px solid
+
+.hud-box::after
+  bottom -1px
+  right -1px
+  border-bottom 2px solid
+  border-right 2px solid
+
+.tml-header
+  margin 1rem
+  padding 1rem
+
+.system-bar
+  display flex
+  flex-wrap wrap
+  gap .8rem
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+  font-size .82rem
+  color $text-muted
+
+.system-pill
+  color $accent
+
+.header-main
+  margin-top .8rem
+  display flex
+  justify-content space-between
+  align-items center
+  gap 1rem
+
+.site-title
+  font-size 1.4rem
+  color $text-main
+  letter-spacing .08em
+
+.tml-nav
+  display flex
+  gap .7rem
+  flex-wrap wrap
+
+.nav-link
+  padding .3rem .6rem
+  border 1px solid transparent
+
+.nav-link.is-active,
+.nav-link:hover
+  border-color $border-blue
+  box-shadow 0 0 8px $border-glow
+
+.tml-shell
+  display grid
+  grid-template-columns 280px minmax(0, 1fr)
+  gap 1rem
+  padding 0 1rem 1rem
+
+.tml-sidebar
+  display grid
+  gap 1rem
+  align-content start
+  position sticky
+  top 1rem
+  max-height calc(100vh - 2rem)
+  overflow auto
+
+.sidebar-panel
+  padding .9rem
+
+.panel-title
+  margin 0 0 .6rem
+  font-size .95rem
+  color $accent
+
+.sidebar-name
+  margin .2rem 0
+  font-weight 700
+
+.sidebar-meta
+  margin .2rem 0
+  color $text-muted
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.sidebar-list
+  list-style none
+  margin 0
+  padding 0
+
+.sidebar-list li
+  margin .45rem 0
+
+.tml-main
+  min-width 0
+
+.hero
+  padding 1.4rem
+  margin-bottom 1rem
+
+.hero h1
+  margin 0
+  font-size 2rem
+  letter-spacing .08em
+
+.hero-subtitle
+  color $text-muted
+
+.hero-terminal
+  margin-top 1rem
+  padding .8rem
+  border 1px solid $line
+  background #090d14
+  color $accent
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+  white-space pre-wrap
+
+.section-block
+  margin-bottom 1rem
+
+.section-title
+  margin .3rem 0 1rem
+  font-size 1.1rem
+  letter-spacing .05em
+
+.post-card
+  padding .9rem
+  margin-bottom .9rem
+  transition box-shadow .2s ease, border-color .2s ease
+
+.post-card:hover
+  box-shadow 0 0 14px $border-glow
+
+.post-card-header,
+.post-card-meta
+  display flex
+  flex-wrap wrap
+  justify-content space-between
+  gap .6rem
+  color $text-muted
+  font-size .88rem
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.post-card-title
+  margin .6rem 0
+
+.post-card-summary
+  margin .6rem 0
+
+.status-badge
+  display inline-block
+  padding .1rem .45rem
+  border 1px solid
+  border-radius 999px
+  font-size .75rem
+
+.status-active
+  color $accent
+  border-color rgba(57, 255, 136, .5)
+
+.status-research
+  color $code-blue
+  border-color rgba(88, 166, 255, .5)
+
+.status-archived
+  color $warning
+  border-color rgba(255, 176, 32, .5)
+
+
+.status-paused
+  color $warning
+  border-color rgba(255, 176, 32, .5)
+
+.status-reading
+  color $code-blue
+  border-color rgba(88, 166, 255, .5)
+
+.status-finished
+  color $accent
+  border-color rgba(57, 255, 136, .5)
+
+.status-planned
+  color $text-muted
+  border-color rgba(125,133,144,.5)
+
+.status-draft
+  color $danger
+  border-color rgba(255, 77, 77, .5)
+
+.tag-cloud
+  display flex
+  flex-wrap wrap
+  gap .5rem
+
+.tag-item
+  padding .28rem .56rem
+  border 1px solid $line
+
+.page-content,
+.list-page,
+.search-page,
+.error-page
+  padding 1rem
+
+.post-shell
+  display grid
+  grid-template-columns minmax(0, 1fr) 280px
+  gap 1rem
+
+.post-detail
+  padding 1rem
+
+.post-case
+  color $accent
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.post-meta
+  display flex
+  flex-wrap wrap
+  gap .7rem
+  color $text-muted
+  font-size .86rem
+  margin .4rem 0
+
+.post-content img
+  max-width 100%
+
+.post-content pre
+  position relative
+  overflow-x auto
+  background #080b11
+  border 1px solid $line
+  padding .9rem
+
+.post-content pre::before
+  content attr(data-lang)
+  position absolute
+  top .35rem
+  left .5rem
+  font-size .72rem
+  color $text-muted
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.post-content code
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.post-content :not(pre) > code
+  padding .15rem .35rem
+  background rgba(88,166,255,.12)
+  border 1px solid rgba(88,166,255,.3)
+
+.post-content table
+  width 100%
+  border-collapse collapse
+
+.post-content th,
+.post-content td
+  border 1px solid $line
+  padding .4rem
+
+.post-nav
+  margin-top 1rem
+  display flex
+  justify-content space-between
+  gap .8rem
+
+.toc-panel
+  position sticky
+  top 1rem
+  max-height calc(100vh - 2rem)
+  overflow auto
+  padding .8rem
+
+.toc-details summary
+  cursor pointer
+  color $accent
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.post-toc ol
+  padding-left 1rem
+
+.post-toc a
+  color $text-muted
+
+.post-toc a.active
+  color $accent
+
+.archive-timeline
+  border-left 1px solid $line
+  margin-left .4rem
+  padding-left .9rem
+
+.timeline-item
+  margin .8rem 0
+  display grid
+  gap .2rem
+
+.timeline-date
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+  color $text-muted
+  font-size .85rem
+
+.term-card
+  margin-bottom .9rem
+  padding .8rem
+  border 1px solid $line
+
+.search-box input
+  width 100%
+  background #0a0f17
+  color $text-main
+  border 1px solid $line
+  padding .65rem
+
+.search-result article
+  margin .75rem 0
+  padding .7rem
+  border 1px solid $line
+
+.redacted
+  color transparent
+  background linear-gradient(90deg, #111 0%, #111 100%)
+  border-radius 2px
+  padding 0 .2em
+  transition color .2s ease
+
+.redacted:hover
+  color $text-muted
+
+.tml-footer
+  margin 0 1rem 1rem
+  padding .8rem 1rem
+  color $text-muted
+  font-size .88rem
+  text-align center
+
+.footer-sub
+  margin .25rem 0 0
+
+.back-to-top
+  position fixed
+  right 1rem
+  bottom 1rem
+  opacity 0
+  transform translateY(12px)
+  pointer-events none
+  transition all .2s ease
+  background #0a1018
+  color $accent
+  border 1px solid $line
+  padding .45rem .7rem
+
+.back-to-top.visible
+  opacity 1
+  transform translateY(0)
+  pointer-events auto
+
+
+.taxonomy-filter-header
+  display flex
+  justify-content space-between
+  align-items center
+  gap .6rem
+  margin .2rem 0 .8rem
+
+.taxonomy-hint
+  margin 0
+  color $text-muted
+
+.taxonomy-cloud
+  margin-bottom .8rem
+
+.taxonomy-chip.is-active
+  border-color $border-blue
+  box-shadow 0 0 8px $border-glow
+
+.taxonomy-item[hidden]
+  display none
+
+.taxonomy-empty
+  margin .8rem 0 0
+  color $text-muted
+
+.calendar-page
+  padding 1rem
+
+.calendar-head
+  display flex
+  justify-content space-between
+  align-items center
+  gap .8rem
+  margin-bottom .8rem
+
+.calendar-sub
+  margin 0
+  color $text-muted
+
+.calendar-grid-wrap
+  overflow-x auto
+  position relative
+  padding-top 1.3rem
+
+.calendar-months
+  position absolute
+  left 0
+  top 0
+  height 1rem
+  min-width 780px
+
+.calendar-months span
+  position absolute
+  font-size .72rem
+  color $text-muted
+
+.calendar-grid
+  min-width 780px
+  display grid
+  grid-template-columns repeat(53, 12px)
+  grid-auto-rows 12px
+  gap 3px
+
+.calendar-cell
+  width 12px
+  height 12px
+  border 1px solid rgba(88,166,255,.15)
+  background rgba(125,133,144,.18)
+
+.calendar-level-1
+  background rgba(57,255,136,.22)
+
+.calendar-level-2
+  background rgba(57,255,136,.38)
+
+.calendar-level-3
+  background rgba(57,255,136,.58)
+
+.calendar-level-4
+  background rgba(57,255,136,.82)
+
+.calendar-meta
+  display flex
+  flex-wrap wrap
+  gap .7rem
+  color $text-muted
+  font-size .85rem
+  margin-top .8rem
+
+.calendar-legend
+  display inline-flex
+  align-items center
+  gap .35rem
+
+.calendar-legend i
+  width 12px
+  height 12px
+  border 1px solid rgba(88,166,255,.15)
+
+.calendar-legend .l0
+  background rgba(125,133,144,.18)
+
+.calendar-legend .l1
+  background rgba(57,255,136,.22)
+
+.calendar-legend .l2
+  background rgba(57,255,136,.38)
+
+.calendar-legend .l3
+  background rgba(57,255,136,.58)
+
+.calendar-legend .l4
+  background rgba(57,255,136,.82)
+
+.dashboard-panel
+  padding 1rem
+
+.dashboard-stats-grid
+  display grid
+  grid-template-columns repeat(3, minmax(0, 1fr))
+  gap .7rem
+
+.dashboard-stat-card
+  border 1px solid $line
+  background rgba(10,15,23,.6)
+  padding .75rem
+
+.dashboard-stat-label
+  margin 0
+  color $text-muted
+  font-size .8rem
+  font-family 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace
+
+.dashboard-stat-value
+  margin .35rem 0 0
+  color $accent
+  font-size 1.35rem
+  font-weight 700
+
+.dashboard-heatmap-wrap
+  overflow-x auto
+
+.dashboard-heatmap-grid
+  min-width 780px
+  display grid
+  grid-template-columns repeat(53, 12px)
+  grid-auto-rows 12px
+  gap 3px
+
+.dashboard-panel-link
+  margin-top .7rem
+
+.module-page
+  padding 1rem
+
+.module-subtitle
+  margin .2rem 0 1rem
+  color $text-muted
+
+.module-grid
+  display grid
+  grid-template-columns repeat(2, minmax(0, 1fr))
+  gap .8rem
+
+.compact-grid
+  grid-template-columns repeat(2, minmax(0, 1fr))
+
+.module-card
+  padding .8rem
+
+.module-card-head
+  display flex
+  justify-content space-between
+  align-items flex-start
+  gap .7rem
+
+.module-card-head h2,
+.module-card-head h3
+  margin .1rem 0
+
+.module-meta
+  margin .45rem 0
+  display flex
+  flex-wrap wrap
+  gap .65rem
+  color $text-muted
+  font-size .86rem
+
+.module-summary
+  margin .55rem 0
+
+.module-links
+  display flex
+  flex-wrap wrap
+  gap .7rem
+  margin-top .65rem
+
+.book-progress-wrap
+  margin .55rem 0
+
+.book-progress-label
+  color $text-muted
+  font-size .82rem
+  margin-bottom .35rem
+
+.book-progress
+  height 8px
+  border 1px solid $line
+  background rgba(125,133,144,.2)
+
+.book-progress span
+  display block
+  height 100%
+  background rgba(57,255,136,.7)
+
+.series-nav
+  margin-top 1rem
+  padding .8rem
+
+.series-nav h2
+  margin 0 0 .55rem
+  font-size 1rem
+
+.series-current
+  margin 0 0 .65rem
+  color $text-muted
+
+.series-nav-links
+  display flex
+  justify-content space-between
+  flex-wrap wrap
+  gap .6rem
+
+@import 'components'
+@import 'post'
+@import 'responsive'

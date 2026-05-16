@@ -1,0 +1,53 @@
+<div class="sidebar-panel hud-box">
+  <h2 class="panel-title"><%= __('sidebar.identity') %></h2>
+  <p class="sidebar-name"><%= theme.profile && theme.profile.name ? theme.profile.name : config.author %></p>
+  <p class="sidebar-meta"><%= theme.profile && theme.profile.role ? theme.profile.role : __('sidebar.researcher') %></p>
+  <p class="sidebar-meta"><%= __('sidebar.status') %>: <%= theme.profile && theme.profile.status ? theme.profile.status : __('sidebar.active') %></p>
+  <p class="sidebar-meta"><%= __('sidebar.location') %>: <%= theme.profile && theme.profile.location ? theme.profile.location : __('sidebar.unknown') %></p>
+</div>
+
+<div class="sidebar-panel hud-box">
+  <h2 class="panel-title"><%= __('sidebar.social') %></h2>
+  <ul class="sidebar-list">
+    <% if (theme.social && theme.social.github) { %>
+      <li><a href="<%= theme.social.github %>" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    <% } %>
+    <% if (theme.social && theme.social.email) { %>
+      <li><a href="mailto:<%= theme.social.email %>"><%= __('sidebar.email') %></a></li>
+    <% } %>
+    <% if (theme.social && theme.social.google_scholar) { %>
+      <li><a href="<%= theme.social.google_scholar %>" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+    <% } %>
+    <% if (theme.features && theme.features.rss) { %>
+      <li><a href="<%- url_for('/atom.xml') %>"><%= __('sidebar.rss_feed') %></a></li>
+    <% } %>
+  </ul>
+</div>
+
+<%
+  const currentLang = page.lang || (typeof config.language === 'string' ? config.language : (Array.isArray(config.language) && config.language.length ? config.language[0] : 'zh-CN'));
+  const isEn = currentLang === 'en';
+  const configuredDirections = (theme.research_direction_categories || []).map((name) => String(name || '').trim()).filter(Boolean);
+  const fallbackDirections = [
+    __('sidebar.direction_algorithms'),
+    __('sidebar.direction_distributed_systems'),
+    __('sidebar.direction_ai'),
+    __('sidebar.direction_security'),
+    __('sidebar.direction_engineering_notes')
+  ];
+%>
+<div class="sidebar-panel hud-box">
+  <h2 class="panel-title"><%= __('sidebar.research_directions') %></h2>
+  <ul class="sidebar-list">
+    <% if (configuredDirections.length) { %>
+      <% configuredDirections.forEach(function(direction){ %>
+        <% const href = `${url_for(isEn ? '/en/categories/' : '/categories/')}?c=${encodeURIComponent(direction)}`; %>
+        <li><a href="<%- href %>"><%= direction %></a></li>
+      <% }) %>
+    <% } else { %>
+      <% fallbackDirections.forEach(function(direction){ %>
+        <li><%= direction %></li>
+      <% }) %>
+    <% } %>
+  </ul>
+</div>

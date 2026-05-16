@@ -1,0 +1,47 @@
+<%
+  const seriesData = ((site.data || {}).series || {}).series || [];
+  const seriesList = Array.isArray(seriesData) ? seriesData : [];
+  const posts = site.posts && typeof site.posts.toArray === 'function' ? site.posts.toArray() : (Array.isArray(site.posts) ? site.posts : []);
+  const isEn = page.lang === 'en';
+%>
+<section class="list-page hud-box module-page series-page">
+  <h1><%= page.title %></h1>
+  <p class="module-subtitle"><%= __('series.subtitle') %></p>
+
+  <div class="module-grid">
+    <% seriesList.forEach(function(item){ %>
+      <%
+        const count = posts.filter(function(post){
+          const seriesSlug = String(item.slug || item.name || '');
+          return String(post.series || '') === seriesSlug || String(post.series || '').toLowerCase() === String(item.name || '').toLowerCase();
+        }).length;
+      %>
+      <article class="module-card hud-box">
+        <header class="module-card-head">
+          <h2><%= item.name || __('series.untitled') %></h2>
+          <span class="status-badge status-<%= String(item.status || 'active').toLowerCase() %>"><%= String(item.status || 'active').toUpperCase() %></span>
+        </header>
+
+        <div class="module-meta">
+          <% if (item.category) { %>
+            <span>
+              <%= __('series.category') %>:
+              <a href="<%- url_for((isEn ? '/en/categories/' : '/categories/') + '?c=' + encodeURIComponent(item.category)) %>"><%= item.category %></a>
+            </span>
+          <% } %>
+          <span><%= __('series.post_count') %>: <%= count %></span>
+        </div>
+
+        <% if (item.summary) { %><p class="module-summary"><%= item.summary %></p><% } %>
+
+        <% if (item.tags && item.tags.length) { %>
+          <div class="tag-cloud">
+            <% item.tags.forEach(function(tag){ %>
+              <a class="tag-item" href="<%- url_for((isEn ? '/en/tags/' : '/tags/') + '?t=' + encodeURIComponent(tag)) %>"><%= tag %></a>
+            <% }) %>
+          </div>
+        <% } %>
+      </article>
+    <% }) %>
+  </div>
+</section>

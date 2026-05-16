@@ -1,0 +1,195 @@
+nav:
+  home: 首页
+  projects: 项目档案
+  books: 书单
+  experiments: 实验日志
+  series: 文章系列
+  archives: 归档
+  categories: 分类
+  tags: 标签
+  calendar: 日历热力图
+  search: 搜索
+  about: 关于
+
+lang:
+  switch_to_en: EN
+  switch_to_zh: 中文
+
+header:
+  system_online: 系统在线
+  path: 路径
+  time: 时间
+  posts: 文章
+  categories: 分类
+  tags: 标签
+  menu: 菜单
+  main_navigation: 主导航
+
+home:
+  hero_title: THE MACHINE LOG
+  hero_subtitle: 面向系统、算法、AI 与工程实践的研究日志。
+  terminal_line_1: "> 启动序列已初始化"
+  terminal_line_2: "> 身份：计算机专业研究生"
+  terminal_line_3: "> 状态：学习 / 研究 / 构建"
+  terminal_line_4: "> 档案访问已授权"
+  recent_records: 最近记录
+  categories_quick_access: 分类快速入口
+
+search:
+  archive_title: 检索档案
+  placeholder: 搜索标题 / 内容 / 标签 / 分类...
+  no_match: 未找到匹配记录。
+  index_missing: 搜索索引不存在，请先运行 <code>hexo generate</code>。
+  untitled: 未命名
+
+copy:
+  copy: 复制
+  copied: 已复制
+  failed: 失败
+
+common:
+  minutes_short: 分钟
+  top: 顶部
+
+post:
+  case_file: 案例档案
+  created: 创建于
+  updated: 更新于
+  status: 状态
+  classification: 分类
+  learning_record: 学习记录
+  categories: 分类
+  tags: 标签
+  read_time: 阅读时长
+  previous: 上一篇
+  next: 下一篇
+  series_navigation: 系列导航
+  series_current: 当前章节
+  series_previous: 上一章节
+  series_next: 下一章节
+
+archive:
+  timeline: 归档时间线
+
+category:
+  single: 分类
+  all: 分类标签
+
+tag:
+  single: 标签
+  all: 标签标签
+
+taxonomy:
+  category_hint: 先选择一个分类标签，再浏览该分类下文章。
+  tag_hint: 先选择一个标签标签，再浏览该标签下文章。
+  clear_filter: 清除筛选
+  no_posts_for_category: 当前分类下暂无文章。
+  no_posts_for_tag: 当前标签下暂无文章。
+
+calendar:
+  title: 日历热力图
+  subtitle: 过去 365 天的发文活跃度分布
+  aria: 发文活跃度日历热力图
+  posts_unit: 篇
+  range: 统计区间
+  less: 少
+  more: 多
+
+error:
+  signal_lost: 信号丢失
+  archive_missing: 请求的档案不存在。
+  return_to_index: 返回首页。
+
+sidebar:
+  identity: 身份
+  researcher: 研究者
+  status: 状态
+  active: 活跃
+  location: 位置
+  unknown: 未知
+  social: 社交
+  email: 邮箱
+  rss_feed: RSS 订阅
+  research_directions: 研究方向
+  direction_algorithms: 算法
+  direction_distributed_systems: 分布式系统
+  direction_ai: 人工智能
+  direction_security: 安全
+  direction_programming_languages: 编程语言
+  direction_engineering_notes: 工程笔记
+
+footer:
+  built_with_hexo: 基于 Hexo 构建
+  theme: 主题
+
+pagination:
+  prev: 上一页
+  next: 下一页
+
+toc:
+  title: 目录
+
+dashboard:
+  system_status: 系统状态
+  stats_papers_read: 已读论文
+  stats_research_logs: 研究日志
+  stats_active_projects: 活跃项目
+  stats_experiments: 实验条目
+  stats_books: 书目数量
+  stats_series: 文章系列
+  learning_heatmap: 学习热力图
+  open_full_heatmap: 打开完整热力图
+  current_focus: 当前重点
+  active_case_files: 活跃案例档案
+  research_domains: 研究领域
+
+projects:
+  subtitle: 当前推进中的研究与工程项目档案。
+  untitled: 未命名项目
+  type: 类型
+  started: 开始时间
+  tags: 标签
+  demo: 演示
+  writeup: 记录
+
+books:
+  subtitle: 按状态组织的阅读清单与笔记入口。
+  untitled: 未命名书目
+  author: 作者
+  category: 分类
+  progress: 进度
+  started: 开始时间
+  finished: 完成时间
+  rating: 评分
+  notes: 笔记
+  status_reading: 正在阅读
+  status_finished: 已完成
+  status_planned: 计划阅读
+  status_reference: 长期参考
+  status_paused: 暂停
+
+experiments:
+  subtitle: 按实验维度整理的日志记录。
+  result: 结果
+  reproducible: 可复现
+  yes: 是
+  no: 否
+  empty: 暂无实验日志记录。
+
+series:
+  subtitle: 围绕主题持续输出的系列文章。
+  untitled: 未命名系列
+  category: 分类
+  post_count: 文章数
+
+intro:
+  aria_label: 系统启动片头
+  system_online: 系统在线
+  access_archive: 访问：研究档案
+  boot_sequence: 启动序列
+  line_1: "> 初始化观测网格"
+  line_2: "> 正在加载研究索引"
+  line_3: "> 正在校准信号过滤器"
+  line_4: "> 身份：计算机专业研究生"
+  line_5: "> 档案访问已授权"
+  skip: 跳过

@@ -1,0 +1,15 @@
+<%
+  if (!page || !page.content) {
+    return;
+  }
+  const tocHtml = toc(page.content, { list_number: false, max_depth: 4, min_depth: 2 });
+  if (!tocHtml) {
+    return;
+  }
+%>
+<aside class="toc-panel hud-box" id="toc-panel">
+  <details class="toc-details" open>
+    <summary><%= __('toc.title') %></summary>
+    <nav class="post-toc" id="post-toc"><%- tocHtml %></nav>
+  </details>
+</aside>

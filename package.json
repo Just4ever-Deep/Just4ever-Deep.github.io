@@ -1,0 +1,40 @@
+{
+  "name": "the-machine-log",
+  "version": "1.0.0",
+  "private": true,
+  "description": "THE MACHINE LOG - Hexo research blog theme and site",
+  "scripts": {
+    "clean": "hexo clean",
+    "build": "hexo generate",
+    "server": "hexo server",
+    "deploy": "hexo deploy"
+  },
+  "hexo": {
+    "version": "8.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Just4ever-Deep/Blog_2026.git"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Just4ever-Deep/Blog_2026/issues"
+  },
+  "homepage": "https://github.com/Just4ever-Deep/Blog_2026#readme",
+  "dependencies": {
+    "hexo": "^8.1.1",
+    "hexo-abbrlink": "^2.2.1",
+    "hexo-cli": "^4.3.2",
+    "hexo-deployer-git": "^4.0.0",
+    "hexo-filter-mathjax": "^0.9.1",
+    "hexo-generator-feed": "^4.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-searchdb": "^1.5.0",
+    "hexo-generator-sitemap": "^3.0.1",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-server": "^3.0.0"
+  }
+}

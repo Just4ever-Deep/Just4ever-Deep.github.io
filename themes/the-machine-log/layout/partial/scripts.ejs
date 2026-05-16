@@ -1,0 +1,35 @@
+<%
+  const activeLang = page.lang || (typeof config.language === 'string' ? config.language : (Array.isArray(config.language) && config.language.length ? config.language[0] : 'zh-CN'));
+%>
+<script>
+  window.CONFIG = {
+    root: '<%- config.root || "/" %>',
+    lang: '<%= activeLang %>'
+  };
+  window.TML_FEATURES = <%- JSON.stringify(theme.features || {}) %>;
+  window.TML_I18N = <%- JSON.stringify({
+    search: {
+      no_match: __('search.no_match'),
+      index_missing: __('search.index_missing'),
+      untitled: __('search.untitled')
+    },
+    copy: {
+      copy: __('copy.copy'),
+      copied: __('copy.copied'),
+      failed: __('copy.failed')
+    }
+  }) %>;
+</script>
+<% if (theme.features && theme.features.mermaid) { %>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<% } %>
+<%- js('js/main.js') %>
+<%- js('js/clock.js') %>
+<%- js('js/taxonomy-filter.js') %>
+<%- js('js/machine-intro.js') %>
+<% if (theme.features && theme.features.code_copy) { %>
+  <%- js('js/code-copy.js') %>
+<% } %>
+<% if (theme.features && theme.features.search) { %>
+  <%- js('js/search.js') %>
+<% } %>

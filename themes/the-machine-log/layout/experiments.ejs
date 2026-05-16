@@ -1,0 +1,33 @@
+<%
+  const allPosts = site.posts && typeof site.posts.toArray === 'function' ? site.posts.toArray() : (Array.isArray(site.posts) ? site.posts : []);
+  const posts = allPosts.sort(function(a, b){ return new Date(b.date).getTime() - new Date(a.date).getTime(); }).filter(function(post){
+    const categories = (post.categories || []).map(c => String(c.name || '').toLowerCase());
+    const tags = (post.tags || []).map(t => String(t.name || '').toLowerCase());
+    return categories.includes('experiments') || categories.includes('实验日志') || tags.includes('experiment');
+  });
+%>
+<section class="list-page hud-box module-page experiments-page">
+  <h1><%= page.title %></h1>
+  <p class="module-subtitle"><%= __('experiments.subtitle') %></p>
+
+  <% posts.forEach(function(post){ %>
+    <article class="post-card hud-box experiment-card">
+      <header class="post-card-header">
+        <span class="post-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+        <span class="status-badge status-<%= String(post.status || 'active').toLowerCase() %>"><%= String(post.status || 'active').toUpperCase() %></span>
+      </header>
+      <h2 class="post-card-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+      <p class="post-card-summary"><%= post.summary || strip_html(post.excerpt || post.content || '').slice(0, 180) %></p>
+
+      <div class="module-meta">
+        <% if (post.experiment_id) { %><span>ID: <%= post.experiment_id %></span><% } %>
+        <% if (post.result) { %><span><%= __('experiments.result') %>: <%= post.result %></span><% } %>
+        <% if (typeof post.reproducible !== 'undefined') { %><span><%= __('experiments.reproducible') %>: <%= post.reproducible ? __('experiments.yes') : __('experiments.no') %></span><% } %>
+      </div>
+    </article>
+  <% }) %>
+
+  <% if (!posts.length) { %>
+    <p class="taxonomy-empty"><%= __('experiments.empty') %></p>
+  <% } %>
+</section>

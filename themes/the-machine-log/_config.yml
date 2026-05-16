@@ -1,0 +1,44 @@
+menu:
+  Home: /
+  Projects: /projects/
+  Books: /books/
+  Experiments: /experiments/
+  Series: /series/
+  Archives: /archives/
+  Categories: /categories/
+  Tags: /tags/
+  Calendar: /calendar/
+  Search: /search/
+  About: /about/
+
+social:
+  github: https://github.com/Just4ever-Deep
+  email: your-email@example.com
+  google_scholar: https://scholar.google.com/
+
+research_direction_categories:
+  - Algorithms
+  - Systems
+  - AI
+  - Security
+  - Engineering
+
+profile:
+  name: Your Name
+  role: Computer Science Graduate Student
+  status: Learning / Researching / Building
+  location: Asia/Shanghai
+
+features:
+  search: true
+  toc: true
+  code_copy: true
+  mermaid: true
+  math: true
+  rss: true
+
+appearance:
+  hero_title: THE MACHINE LOG
+  hero_subtitle: A research log for systems, algorithms, AI and everything in between.
+  accent_color: '#39FF88'
+  panel_color: '#0D1117'

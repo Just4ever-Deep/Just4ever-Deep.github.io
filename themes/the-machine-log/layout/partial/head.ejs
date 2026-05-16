@@ -1,0 +1,18 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="<%= page.description || config.description %>">
+  <meta name="theme-color" content="#05070A">
+  <title>
+    <% if (page.title) { %>
+      <%= page.title %> | <%= config.title %>
+    <% } else { %>
+      <%= config.title %>
+    <% } %>
+  </title>
+  <%- css('css/main.css') %>
+  <% if (theme.features && theme.features.rss) { %>
+    <link rel="alternate" href="<%- url_for('/atom.xml') %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <%- open_graph() %>
+</head>

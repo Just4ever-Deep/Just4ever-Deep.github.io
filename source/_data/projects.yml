@@ -1,0 +1,53 @@
+projects:
+  - title: Distributed KV Store
+    slug: distributed-kv-store
+    status: active
+    type: system-project
+    started: 2026-01
+    stack:
+      - Go
+      - Raft
+      - gRPC
+      - RocksDB
+    summary: 面向一致性与复制机制学习的分布式 KV 存储系统练习项目。
+    links:
+      github: https://github.com/Just4ever-Deep/distributed-kv-store
+      demo:
+      writeup: /posts/1130896835/
+    tags:
+      - distributed-system
+      - raft
+      - storage
+  - title: Learning Signal Dashboard
+    slug: learning-signal-dashboard
+    status: research
+    type: research-project
+    started: 2026-02
+    stack:
+      - Hexo
+      - EJS
+      - Stylus
+    summary: 用于可视化个人研究活跃度和学习进展的博客仪表盘扩展。
+    links:
+      github:
+      demo: /calendar/
+      writeup: /posts/4103984525/
+    tags:
+      - dashboard
+      - visualization
+  - title: Algorithm Notebook Engine
+    slug: algorithm-notebook-engine
+    status: paused
+    type: study-project
+    started: 2026-03
+    stack:
+      - C++
+      - Python
+    summary: 统一收敛题解模板、复杂度分析和实验记录的算法笔记系统。
+    links:
+      github:
+      demo:
+      writeup: /posts/1949528857/
+    tags:
+      - algorithms
+      - notes

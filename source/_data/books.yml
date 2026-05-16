@@ -1,0 +1,55 @@
+books:
+  - title: Designing Data-Intensive Applications
+    author: Martin Kleppmann
+    status: reading
+    category: Systems
+    progress: 45
+    started: 2026-01
+    finished:
+    rating:
+    notes: /tags/distributed-system/
+    summary: 关注数据系统中的一致性、复制、分区、流处理与可扩展性设计。
+
+  - title: "Computer Systems: A Programmer's Perspective"
+    author: Randal E. Bryant, David R. O'Hallaron
+    status: reference
+    category: Systems
+    progress: 100
+    started:
+    finished:
+    rating: 5
+    notes: /tags/operating-system/
+    summary: 作为系统基础知识的长期参考书，用于查阅底层实现与性能细节。
+
+  - title: Introduction to Algorithms
+    author: Cormen, Leiserson, Rivest, Stein
+    status: finished
+    category: Algorithms
+    progress: 100
+    started: 2025-09
+    finished: 2026-02
+    rating: 5
+    notes: /categories/Algorithms/
+    summary: 用于巩固算法设计思想、复杂度分析与经典问题建模。
+
+  - title: Pattern Recognition and Machine Learning
+    author: Christopher M. Bishop
+    status: planned
+    category: AI
+    progress: 0
+    started:
+    finished:
+    rating:
+    notes: /tags/machine-learning/
+    summary: 计划用于补强概率图模型与统计学习理论。
+
+  - title: Database System Concepts
+    author: Silberschatz, Korth, Sudarshan
+    status: paused
+    category: Databases
+    progress: 30
+    started: 2026-02
+    finished:
+    rating:
+    notes: /tags/database/
+    summary: 当前暂停，后续继续补完事务、恢复与查询优化部分。
