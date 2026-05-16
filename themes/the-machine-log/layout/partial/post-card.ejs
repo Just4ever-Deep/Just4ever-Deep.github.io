@@ -3,7 +3,7 @@
   const readTimeMinutes = Math.max(1, Math.round((strip_html(item.content || item.excerpt || '').length / 500) || 1));
   const status = (item.status || 'active').toUpperCase();
   const summaryText = item.summary || strip_html(item.excerpt || item.content || '').slice(0, 180);
-%>
+-%>
 <article class="post-card hud-box">
   <header class="post-card-header">
     <span class="post-date"><%= date(item.date, 'YYYY-MM-DD') %></span>
@@ -13,8 +13,8 @@
   <p class="post-card-summary"><%= summaryText %></p>
   <div class="post-card-meta">
     <span><%= __('post.read_time') %>: <%= readTimeMinutes %> <%= __('common.minutes_short') %></span>
-    <% if (item.tags && item.tags.length) { %>
+<% if (item.tags && item.tags.length) { -%>
       <span><%= __('post.tags') %>: <%= item.tags.map(t => t.name).join(', ') %></span>
-    <% } %>
+<% } -%>
   </div>
 </article>

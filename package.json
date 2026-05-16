@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Just4ever-Deep/Blog_2026.git"
+    "url": "git+https://github.com/Just4ever-Deep/Just4ever-Deep.github.io.git"
   },
   "author": "Your Name",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Just4ever-Deep/Blog_2026/issues"
+    "url": "https://github.com/Just4ever-Deep/Just4ever-Deep.github.io/issues"
   },
-  "homepage": "https://github.com/Just4ever-Deep/Blog_2026#readme",
+  "homepage": "https://just4ever-deep.github.io/",
   "dependencies": {
     "hexo": "^8.1.1",
     "hexo-abbrlink": "^2.2.1",

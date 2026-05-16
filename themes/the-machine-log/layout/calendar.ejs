@@ -36,9 +36,9 @@
       <% }) %>
     </div>
     <div class="calendar-grid" aria-label="<%= __('calendar.aria') %>">
-      <% cells.forEach(function(cell){ %>
+      <% cells.forEach(function(cell){ -%>
         <div class="calendar-cell calendar-level-<%= cell.level %>" title="<%= cell.key %> · <%= cell.count %> <%= __('calendar.posts_unit') %>"></div>
-      <% }) %>
+<% }) -%>
     </div>
   </div>
 

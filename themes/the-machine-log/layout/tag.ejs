@@ -6,20 +6,22 @@
   </div>
 
   <div class="tag-cloud taxonomy-cloud" data-taxonomy-cloud>
-    <% site.tags.each(function(tag){ %>
-      <% const isActive = String(page.tag || '') === String(tag.name); %>
-      <% const href = `${url_for(page.lang === 'en' ? '/en/tags/' : '/tags/')}?t=${encodeURIComponent(tag.name)}`; %>
+<% site.tags.each(function(tag){
+  const isActive = String(page.tag || '') === String(tag.name);
+  const href = `${url_for(page.lang === 'en' ? '/en/tags/' : '/tags/')}?t=${encodeURIComponent(tag.name)}`;
+-%>
       <a class="tag-item taxonomy-chip <%= isActive ? 'is-active' : '' %>" data-taxonomy-chip data-tag="<%- tag.name %>" href="<%- href %>"><%= tag.name %> (<%= tag.length %>)</a>
-    <% }) %>
+<% }) -%>
   </div>
 
   <div class="taxonomy-list" data-taxonomy-list>
-    <% site.posts.sort('date', -1).forEach(function(post){ %>
-      <% const tags = (post.tags || []).map(t => t.name); %>
+<% site.posts.sort('date', -1).forEach(function(post){
+  const tags = (post.tags || []).map(t => t.name);
+-%>
       <div class="taxonomy-item" data-taxonomy-item data-tags="<%- tags.join('|') %>">
         <%- partial('partial/post-card', { post: post }) %>
       </div>
-    <% }) %>
+<% }) -%>
   </div>
 
   <p class="taxonomy-empty" data-taxonomy-empty hidden><%= __('taxonomy.no_posts_for_tag') %></p>

@@ -66,9 +66,9 @@
   <h2 class="section-title"><%= __('dashboard.learning_heatmap') %></h2>
   <div class="dashboard-heatmap-wrap">
     <div class="dashboard-heatmap-grid" aria-label="<%= __('calendar.aria') %>">
-      <% cells.forEach(function(cell){ %>
+      <% cells.forEach(function(cell){ -%>
         <div class="calendar-cell calendar-level-<%= cell.level %>" title="<%= cell.key %> · <%= cell.count %> <%= __('calendar.posts_unit') %>"></div>
-      <% }) %>
+<% }) -%>
     </div>
   </div>
   <div class="dashboard-panel-link"><a href="<%- url_for(isEn ? '/en/calendar/' : '/calendar/') %>"><%= __('dashboard.open_full_heatmap') %></a></div>
@@ -85,9 +85,9 @@
 
 <section class="section-block">
   <h2 class="section-title"><%= __('home.recent_records') %></h2>
-  <% listingPosts.each(function(post){ %>
+<% listingPosts.each(function(post){ -%>
     <%- partial('partial/post-card', { post: post }) %>
-  <% }) %>
+<% }) -%>
   <%- partial('partial/pagination') %>
 </section>
 
@@ -109,10 +109,10 @@
 <section class="section-block hud-box">
   <h2 class="section-title"><%= __('dashboard.research_domains') %></h2>
   <div class="tag-cloud">
-    <% site.categories.each(function(category){ %>
-      <% const base = isEn ? '/en/categories/' : '/categories/'; %>
+<% site.categories.each(function(category){
+  const base = isEn ? '/en/categories/' : '/categories/';
+-%>
       <a href="<%- url_for(base + '?c=' + encodeURIComponent(category.name)) %>" class="tag-item"><%= category.name %> · <%= category.length %></a>
-    <% }) %>
+<% }) -%>
   </div>
 </section>
-

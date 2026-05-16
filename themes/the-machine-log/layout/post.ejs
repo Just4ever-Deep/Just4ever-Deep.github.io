@@ -10,12 +10,12 @@
         <span><%= __('post.classification') %>: <%= __('post.learning_record') %></span>
       </div>
       <div class="post-meta">
-        <% if (page.categories && page.categories.length) { %>
+<% if (page.categories && page.categories.length) { -%>
           <span><%= __('post.categories') %>: <%= page.categories.map(c => c.name).join(', ') %></span>
-        <% } %>
-        <% if (page.tags && page.tags.length) { %>
+<% } -%>
+<% if (page.tags && page.tags.length) { -%>
           <span><%= __('post.tags') %>: <%= page.tags.map(t => t.name).join(', ') %></span>
-        <% } %>
+<% } -%>
         <span><%= __('post.read_time') %>: <%= Math.max(1, Math.round((strip_html(page.content || '').length / 500) || 1)) %> <%= __('common.minutes_short') %></span>
       </div>
     </header>
@@ -56,12 +56,12 @@
     <% } %>
 
     <nav class="post-nav">
-      <% if (page.prev) { %>
+<% if (page.prev) { -%>
         <a href="<%- url_for(page.prev.path) %>">← <%= __('post.previous') %>: <%= page.prev.title %></a>
-      <% } %>
-      <% if (page.next) { %>
+<% } -%>
+<% if (page.next) { -%>
         <a href="<%- url_for(page.next.path) %>"><%= __('post.next') %>: <%= page.next.title %> →</a>
-      <% } %>
+<% } -%>
     </nav>
   </article>
 
